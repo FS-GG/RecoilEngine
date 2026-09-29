@@ -2256,6 +2256,36 @@ struct SSkirmishAICallback {
 
 	bool              (CALLING_CONV *Debug_GraphDrawer_isEnabled)(int skirmishAIId);
 
+	/**
+	 * Returns the number of commands in an explicitly selected queue domain.
+	 * Queue-domain values are CCommandQueue::QueueType: CommandQueueType (0)
+	 * for non-factories, BuildQueueType (2) for factory production, and
+	 * NewUnitQueueType (1) for factory rally/new-unit commands.
+	 *
+	 * A non-negative result is an authoritative count, including a valid empty
+	 * queue. -1 means the actor is inaccessible. -2 means the actor/domain pair
+	 * is unsupported or invalid. -3 means the queue cannot be represented.
+	 */
+	int               (CALLING_CONV *Unit_getCurrentCommandsByType)(int skirmishAIId, int unitId, int commandQueueType); //$ FETCHER:MULTI:NUM:CurrentCommandByType:commandQueueType
+
+	int               (CALLING_CONV *Unit_CurrentCommandByType_getType)(int skirmishAIId, int unitId, int commandQueueType, int commandId);
+
+	int               (CALLING_CONV *Unit_CurrentCommandByType_getId)(int skirmishAIId, int unitId, int commandQueueType, int commandId);
+
+	short             (CALLING_CONV *Unit_CurrentCommandByType_getOptions)(int skirmishAIId, int unitId, int commandQueueType, int commandId);
+
+	int               (CALLING_CONV *Unit_CurrentCommandByType_getTag)(int skirmishAIId, int unitId, int commandQueueType, int commandId);
+
+	int               (CALLING_CONV *Unit_CurrentCommandByType_getTimeOut)(int skirmishAIId, int unitId, int commandQueueType, int commandId);
+
+	/**
+	 * Returns the exact parameter count. A null output pointer queries the count.
+	 * If params_sizeMax is smaller than that count, nothing is copied and the
+	 * required count is returned. Negative capacity or invalid selection returns
+	 * -1, so a partial read can never be mistaken for a complete snapshot.
+	 */
+	int               (CALLING_CONV *Unit_CurrentCommandByType_getParams)(int skirmishAIId, int unitId, int commandQueueType, int commandId, float* params, int params_sizeMax); //$ ARRAY:params
+
 };
 
 #if	defined(__cplusplus)

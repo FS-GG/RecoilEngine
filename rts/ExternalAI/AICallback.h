@@ -77,6 +77,7 @@ public:
 	int GiveOrder(int unitId,Command* c);
 	const std::vector<const SCommandDescription*>* GetUnitCommands(int unitId);
 	const CCommandQueue* GetCurrentUnitCommands(int unitId);
+	int GetCurrentUnitCommandsByType(int unitId, int commandQueueType, const CCommandQueue** commandQueue);
 
 	int GetUnitAiHint(int unitId);
 	int GetUnitTeam(int unitId);

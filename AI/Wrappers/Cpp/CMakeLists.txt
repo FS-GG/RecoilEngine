@@ -66,6 +66,7 @@ if    (BUILD_${myName}_AIWRAPPER)
 	set(myGeneratedWrapperSources
 		${myGeneratedSourceDir}/AbstractCheats.cpp
 		${myGeneratedSourceDir}/AbstractCommand.cpp
+		${myGeneratedSourceDir}/AbstractCurrentCommandByType.cpp
 		${myGeneratedSourceDir}/AbstractCommandDescription.cpp
 		${myGeneratedSourceDir}/AbstractDamage.cpp
 		${myGeneratedSourceDir}/AbstractDataDirs.cpp
@@ -106,6 +107,7 @@ if    (BUILD_${myName}_AIWRAPPER)
 		${myGeneratedSourceDir}/AbstractWeapon.cpp
 		${myGeneratedSourceDir}/StubCheats.cpp
 		${myGeneratedSourceDir}/StubCommand.cpp
+		${myGeneratedSourceDir}/StubCurrentCommandByType.cpp
 		${myGeneratedSourceDir}/StubCommandDescription.cpp
 		${myGeneratedSourceDir}/StubDamage.cpp
 		${myGeneratedSourceDir}/StubDataDirs.cpp
@@ -146,6 +148,7 @@ if    (BUILD_${myName}_AIWRAPPER)
 		${myGeneratedSourceDir}/StubWeapon.cpp
 		${myGeneratedSourceDir}/WrappCheats.cpp
 		${myGeneratedSourceDir}/WrappCurrentCommand.cpp
+		${myGeneratedSourceDir}/WrappCurrentCommandByType.cpp
 		${myGeneratedSourceDir}/WrappDamage.cpp
 		${myGeneratedSourceDir}/WrappDataDirs.cpp
 		${myGeneratedSourceDir}/WrappDebug.cpp
