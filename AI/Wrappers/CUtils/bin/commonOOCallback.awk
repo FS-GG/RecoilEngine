@@ -171,7 +171,7 @@ function part_getFetcherIndArg(metaInfo_p) {
 	fetcherIndArgPart_p = part_getFetcherPart(metaInfo_p);
 
 	# remove post indices arg
-	if (match(/:/, fetcherIndArgPart_p)) {
+	if (match(fetcherIndArgPart_p, /:/)) {
 		sub(/.*:/, "", fetcherIndArgPart_p);
 	} else {
 		fetcherIndArgPart_p = "";
@@ -224,6 +224,7 @@ if (isIntNameDifferent) { print("isIntNameDifferent: " ancestorsPlusName_p " " m
 		if (isIntNameDifferent) {
 			intName_p = metaInfo_p;
 			sub(/FETCHER:MULTI:[^: ]*:[^: -]*-/, "", intName_p);
+			sub(/:.*/, "", intName_p);
 		} else {
 			intName_p = part_getClassName(ancestorsPlusName_p, metaInfo_p);
 		}
@@ -248,8 +249,12 @@ function part_getIndicesArgs(clsName_p, implClsName_p, params_p, metaComment_p, 
 			indicesArg_p = "int " indicesArg_p;
 		}
 	} else {
-		tmp_indArg_p = clsName_p;
-		tmp_indArg_p = "int " lowerize(tmp_indArg_p) "Id";
+		if (implClsName_p == "CurrentCommandByType") {
+			tmp_indArg_p = "int commandId";
+		} else {
+			tmp_indArg_p = clsName_p;
+			tmp_indArg_p = "int " lowerize(tmp_indArg_p) "Id";
+		}
 #if (params_p != "") { print("params_p: " params_p); }
 		if (match(params_p, tmp_indArg_p)) {
 			indicesArg_p = tmp_indArg_p;
@@ -823,4 +828,3 @@ function wrappFunctionPlusMeta(retType, fullName, params, metaComment) {
 END {
 	# finalize things
 }
-
