@@ -40,6 +40,7 @@
 #include "Game/UI/Groups/GroupHandler.h"
 #include "Sim/Units/CommandAI/CommandAI.h"
 #include "Sim/Units/CommandAI/CommandQueue.h"
+#include "Sim/Units/CommandAI/FactoryCAI.h"
 #include "Sim/Units/BuildInfo.h"
 #include "Sim/Units/UnitDefHandler.h"
 #include "Sim/Units/Unit.h"
@@ -388,6 +389,47 @@ const CCommandQueue* CAICallback::GetCurrentUnitCommands(int unitId)
 		return &unit->commandAI->commandQue;
 
 	return nullptr;
+}
+
+int CAICallback::GetCurrentUnitCommandsByType(int unitId, int commandQueueType, const CCommandQueue** commandQueue)
+{
+	if (commandQueue == nullptr)
+		return -2;
+
+	*commandQueue = nullptr;
+
+	const CUnit* unit = GetMyTeamUnit(unitId);
+	if (unit == nullptr)
+		return -1;
+
+	const CFactoryCAI* factoryCAI = dynamic_cast<const CFactoryCAI*>(unit->commandAI);
+
+	switch (commandQueueType) {
+		case CCommandQueue::CommandQueueType: {
+			if (factoryCAI != nullptr)
+				return -2;
+
+			*commandQueue = &unit->commandAI->commandQue;
+		} break;
+
+		case CCommandQueue::BuildQueueType: {
+			if (factoryCAI == nullptr)
+				return -2;
+
+			*commandQueue = &unit->commandAI->commandQue;
+		} break;
+
+		case CCommandQueue::NewUnitQueueType: {
+			if (factoryCAI == nullptr)
+				return -2;
+
+			*commandQueue = &factoryCAI->newUnitCommands;
+		} break;
+
+		default: return -2;
+	}
+
+	return 0;
 }
 
 int CAICallback::GetUnitAiHint(int unitId)

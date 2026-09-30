@@ -1263,6 +1263,20 @@ EXPORT(float            ) skirmishAiCallback_Unit_Weapon_getShieldPower(int skir
 
 EXPORT(bool             ) skirmishAiCallback_Debug_GraphDrawer_isEnabled(int skirmishAIId);
 
+EXPORT(int              ) skirmishAiCallback_Unit_getCurrentCommandsByType(int skirmishAIId, int unitId, int commandQueueType);
+
+EXPORT(int              ) skirmishAiCallback_Unit_CurrentCommandByType_getType(int skirmishAIId, int unitId, int commandQueueType, int commandId);
+
+EXPORT(int              ) skirmishAiCallback_Unit_CurrentCommandByType_getId(int skirmishAIId, int unitId, int commandQueueType, int commandId);
+
+EXPORT(short            ) skirmishAiCallback_Unit_CurrentCommandByType_getOptions(int skirmishAIId, int unitId, int commandQueueType, int commandId);
+
+EXPORT(int              ) skirmishAiCallback_Unit_CurrentCommandByType_getTag(int skirmishAIId, int unitId, int commandQueueType, int commandId);
+
+EXPORT(int              ) skirmishAiCallback_Unit_CurrentCommandByType_getTimeOut(int skirmishAIId, int unitId, int commandQueueType, int commandId);
+
+EXPORT(int              ) skirmishAiCallback_Unit_CurrentCommandByType_getParams(int skirmishAIId, int unitId, int commandQueueType, int commandId, float* params, int params_sizeMax);
+
 #if	defined(__cplusplus)
 } // extern "C"
 #endif

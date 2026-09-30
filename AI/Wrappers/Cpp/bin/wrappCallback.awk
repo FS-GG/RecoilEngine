@@ -850,7 +850,15 @@ function printMember(fullName_m, memName_m, additionalIndices_m) {
 	if (match(metaComment, /FETCHER:MULTI:NUM:/)) {
 		# convert this: FETCHER:MULTI:NUM:Resource
 		# to this:      ARRAY:RETURN_SIZE->Resource
-		sub(/FETCHER:MULTI:NUM:/, "ARRAY:RETURN_SIZE->", metaComment);
+		_mc_pre = metaComment;
+		sub(/FETCHER:MULTI:NUM:.*$/, "", _mc_pre);
+		_mc_fet = metaComment;
+		sub(/^.*FETCHER:MULTI:NUM:/, "", _mc_fet);
+		sub(/[ \t].*$/, "", _mc_fet);
+		sub(/:[^:]*$/, "", _mc_fet);
+		_mc_post = metaComment;
+		sub(/^.*FETCHER:MULTI:NUM:[^ \t]*/, "", _mc_post);
+		metaComment = _mc_pre "ARRAY:RETURN_SIZE->" _mc_fet _mc_post;
 	}
 	if (match(metaComment, /REF:MULTI:/)) {
 		# convert this: REF:MULTI:unitDefIds->UnitDef
@@ -1251,6 +1259,11 @@ function printMember(fullName_m, memName_m, additionalIndices_m) {
 				conversionCode_pre = conversionCode_pre "\t\t" _arraySizeMaxPaNa " = INT_MAX;" "\n";
 				conversionCode_pre = conversionCode_pre "\t\t" _arrayPaNa " = NULL;" "\n";
 				conversionCode_pre = conversionCode_pre "\t\t" _arraySizeVar " = " myBridgePrefix functionName_m "(" innerParams ");" "\n";
+				if (functionName_m == "Unit_CurrentCommandByType_getParams") {
+					conversionCode_pre = conversionCode_pre "\t\t" "if (" _arraySizeVar " < 0) {" "\n";
+					conversionCode_pre = conversionCode_pre "\t\t\t" "throw CallbackAIException(\"GetParams\", " _arraySizeVar ");" "\n";
+					conversionCode_pre = conversionCode_pre "\t\t" "}" "\n";
+				}
 				conversionCode_pre = conversionCode_pre "\t\t" _arraySizeMaxPaNa " = " _arraySizeVar ";" "\n";
 				conversionCode_pre = conversionCode_pre "\t\t" _arraySizeRaw " = " _arraySizeVar ";" "\n";
 				if (_isF3) {
@@ -1271,6 +1284,11 @@ function printMember(fullName_m, memName_m, additionalIndices_m) {
 
 		if (_isRetSize) {
 			conversionCode_post = conversionCode_post "\t\t" _arraySizeVar " = " retVar_out_m ";" "\n";
+			if (functionName_m == "Unit_getCurrentCommandsByType") {
+				conversionCode_post = conversionCode_post "\t\t" "if (" _arraySizeVar " < 0) {" "\n";
+				conversionCode_post = conversionCode_post "\t\t\t" "throw CallbackAIException(\"GetCurrentCommandsByType\", " _arraySizeVar ");" "\n";
+				conversionCode_post = conversionCode_post "\t\t" "}" "\n";
+			}
 			_arraySizeMaxPaNa = _arraySizeVar;
 		} else {
 			conversionCode_pre  = conversionCode_pre  "\t\t" _arrayPaNa " = new " _arrayType "[" _arraySizeRaw "];" "\n";
@@ -1278,6 +1296,12 @@ function printMember(fullName_m, memName_m, additionalIndices_m) {
 
 		if (_isFetching) {
 			# convert to an ArrayList
+			if (functionName_m == "Unit_CurrentCommandByType_getParams") {
+				conversionCode_post = conversionCode_post "\t\t" "if (" retVar_int_m " != " _arraySizeRaw ") {" "\n";
+				conversionCode_post = conversionCode_post "\t\t\t" "delete[] " _arrayPaNa ";" "\n";
+				conversionCode_post = conversionCode_post "\t\t\t" "throw CallbackAIException(\"GetParams\", " retVar_int_m ");" "\n";
+				conversionCode_post = conversionCode_post "\t\t" "}" "\n";
+			}
 			conversionCode_post = conversionCode_post "\t\t" _arrayListVar ".reserve(" _arraySizeVar ");" "\n";
 			conversionCode_post = conversionCode_post "\t\t" "for (int i=0; i < " _arraySizeMaxPaNa "; ++i) {" "\n";
 			if (_isF3) {

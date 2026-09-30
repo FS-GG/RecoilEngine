@@ -603,5 +603,15 @@ endif()
 
 ################################################################################
 
+### RallyQueueCallback
+	set(test_name RallyQueueCallback)
+	set(test_src
+			"${CMAKE_CURRENT_SOURCE_DIR}/engine/ExternalAI/testRallyQueueCallback.cpp"
+		)
+	set(test_libs "")
+	add_spring_test(${test_name} "${test_src}" "${test_libs}" "-DBUILDING_AI")
+
+################################################################################
+
 
 add_subdirectory(headercheck)
