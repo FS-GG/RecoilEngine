@@ -24,7 +24,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
 
       - name: Checkout Lua CPP files
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           sparse-checkout: |
             rts/Lua
@@ -32,8 +32,9 @@ jobs:
             doc/site/mise.toml
           path: recoil
 
-      - uses: jdx/mise-action@v2
+      - uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5.2.6
         with:
+          minimum_release_age: 0s
           working_directory: ./recoil/doc/site
           mise_toml: |
             [tools]
@@ -44,7 +45,7 @@ jobs:
         run: mise run lua_library
 
       - name: Check out library repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: ${{ vars.RECOIL_LUA_LIBRARY_RESPOSITORY }}
           ssh-key: ${{ secrets.RECOIL_LUA_LIBRARY_SSH_KEY }}
@@ -61,7 +62,7 @@ jobs:
       #
       # NOTE: The commit message will only be present on a push event.
       - name: Commit and push library repo
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@d0b01107b5db882071f96de5dd4b54961ea93f4c # v7.2.1
         with:
           repository: ./library
           commit_message: |

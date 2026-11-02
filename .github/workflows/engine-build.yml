@@ -86,7 +86,7 @@ jobs:
       - nscloud-exp-container-image-cache
     steps:
       - name: Checkout code
-        uses: namespacelabs/nscloud-checkout-action@v8
+        uses: namespacelabs/nscloud-checkout-action@66f2dc6f6c42a8ac6c4e53473c4840006822831e # v9.0.1
         with:
           # We fetch full history because engine automatic version naming uses
           # that.
@@ -103,7 +103,7 @@ jobs:
       - name: Restore pull request's bazel remote cache overlay
         id: pr-cache-restore
         if: github.event_name == 'pull_request'
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: bazel-remote-data-overlay.tar
           key: pr-bazel-remote-data-${{ matrix.system.target }}-${{ github.run_id }}
@@ -118,7 +118,7 @@ jobs:
           mkdir -p overlay-workdir bazel-remote-data-merged
           sudo fuse-overlayfs -o lowerdir=bazel-remote-data,upperdir=bazel-remote-data-overlay,workdir=overlay-workdir bazel-remote-data-merged
       - name: Start remote ccache fetcher
-        uses: JarvusInnovations/background-action@2428e7b970a846423095c79d43f759abf979a635  # v1.0.7
+        uses: JarvusInnovations/background-action@1f5e5fa2462e48a95f97b54b4842d076d1008e3b # v2.0.0
         env:
           BAZEL_REMOTE_S3_ENDPOINT: ${{ vars.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
           BAZEL_REMOTE_S3_BUCKET: ${{ vars.R2_BUCKET_BUILD_CACHE }}
@@ -204,7 +204,7 @@ jobs:
           EOF
       - name: Save
         #if: github.event_name != 'pull_request'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         id: save-artifact
         with:
           name: engine-artifacts-${{ matrix.system.target }}-${{ inputs.package-suffix }}
@@ -219,7 +219,7 @@ jobs:
       - name: Save pull request's bazel remote cache overlay
         id: pr-cache-save
         if: always() && steps.pr-cache-restore.outcome == 'success'
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: bazel-remote-data-overlay.tar
           key: ${{ steps.pr-cache-restore.outputs.cache-primary-key }}
