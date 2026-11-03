@@ -1,0 +1,16 @@
+{
+  "name": "gflags",
+  "upstreamRepository": "https://github.com/gflags/gflags",
+  "releaseTag": "v2.3.1",
+  "release": "https://github.com/gflags/gflags/releases/tag/v2.3.1",
+  "releaseId": 358193451,
+  "commit": "8f30ebfb2b206a8bd3a97ffe3b59009a952343e6",
+  "gitlinkPath": "gflags",
+  "previousCommit": "33bb3461e10864b5406353d3a1fb7ff34c2314b8",
+  "integration": "CMake static single-thread gflags_nothreads_static",
+  "observedCMakePackageVersion": "2.3.0",
+  "upstreamCMakeSha256": "2cf8d152afc6d57f8a9dd0e174411f9177533c38e18eeb7fa6b6621f0b30789a",
+  "licenseFile": "gflags/COPYING.txt",
+  "localPatches": [],
+  "notes": "The official v2.3.1 patch release changes Bazel, CI and release documentation. Consumed CMake, native source and test inputs remain identical to the previous commit; upstream PACKAGE_VERSION is preserved as observed."
+}
