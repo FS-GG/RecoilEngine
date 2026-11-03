@@ -1,0 +1,15 @@
+{
+  "name": "Nowide",
+  "version": "11.3.1",
+  "integration": "standalone",
+  "source": "https://github.com/boostorg/nowide/releases/tag/v11.3.1",
+  "archive": "https://github.com/boostorg/nowide/releases/download/v11.3.1/nowide_standalone_v11.3.1.tar.gz",
+  "archiveSha256": "eaec4d331e3961f5eeb10c46a11691d62047900a7a40765b0f23cdd3181e6ca6",
+  "upstreamAssetId": 318307419,
+  "license": "BSL-1.0",
+  "licenseFile": "nowide/LICENSE",
+  "vendoredPath": "nowide",
+  "localPatches": [],
+  "replacesGitlink": "de3bb558ebe3dd6d22a03b4beb92fbe05470ca1c",
+  "notes": "Exact standalone release files; the release tag points at Boost integration and the moving standalone branch is not the selected release."
+}
