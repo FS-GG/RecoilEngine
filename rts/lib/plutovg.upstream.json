@@ -1,0 +1,18 @@
+{
+  "name": "plutovg",
+  "upstreamRepository": "https://github.com/sammycage/plutovg",
+  "releaseTag": "v1.3.3",
+  "releaseId": 324047031,
+  "release": "https://github.com/sammycage/plutovg/releases/tag/v1.3.3",
+  "commit": "bbd91f0d06a71491691b36330f29dffa4af87ccf",
+  "archiveUrl": "https://codeload.github.com/sammycage/plutovg/tar.gz/bbd91f0d06a71491691b36330f29dffa4af87ccf",
+  "archiveSha256": "19edc7777470bd5737526a6a339ea518892861960cf3563572d5847dd007ccdc",
+  "archiveBytes": 237466,
+  "archiveDigestAuthority": "Locally computed SHA-256 of official immutable-commit codeload archive; release has no uploaded assets or publisher digest.",
+  "gitlinkPath": "plutovg",
+  "sourceFiles": 35,
+  "localPatches": [],
+  "integration": "Explicit local FetchContent provider with OVERRIDE_FIND_PACKAGE; LunaSVG uses upstream USE_SYSTEM_PLUTOVG path. No configure-time network fetch is declared.",
+  "licenseFile": "plutovg/LICENSE",
+  "notes": "Active explicit provider for LunaSVG. Replaces consumed nested PlutoVG 0.0.13 at 5e4712cf873b0c7829a4a6157763e2ad3ac49164; no upstream source edits."
+}

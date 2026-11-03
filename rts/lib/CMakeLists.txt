@@ -199,7 +199,7 @@ find_package_static(Freetype 2.8.1 REQUIRED)
 string(REPLACE "-fsingle-precision-constant" "" NEW_CMAKE_FLAGS ${CMAKE_CXX_FLAGS})
 set(SAVED_CMAKE_FLAGS ${CMAKE_CXX_FLAGS})
 set(CMAKE_CXX_FLAGS ${NEW_CMAKE_FLAGS})
-add_subdirectory(lunasvg)
+include("${CMAKE_CURRENT_LIST_DIR}/LunaSVG.cmake")
 set(CMAKE_CXX_FLAGS ${SAVED_CMAKE_FLAGS})
 
 add_subdirectory(RmlUi)
