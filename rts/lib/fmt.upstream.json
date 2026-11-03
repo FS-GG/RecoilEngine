@@ -1,0 +1,22 @@
+{
+  "name": "fmt",
+  "upstreamRepository": "https://github.com/fmtlib/fmt",
+  "releaseTag": "12.2.0",
+  "releaseId": 339916053,
+  "release": "https://github.com/fmtlib/fmt/releases/tag/12.2.0",
+  "commit": "1be298e1bd68957e4cd352e1f676f00e07dcfb57",
+  "gitlinkPath": "fmt",
+  "previousCommit": "407c905e45ad75fc29bf0f9bb7c5c2fd3475976f",
+  "observedPreviousVersion": "12.1.0",
+  "observedCurrentVersion": "12.2.0",
+  "archiveUrl": "https://codeload.github.com/fmtlib/fmt/tar.gz/1be298e1bd68957e4cd352e1f676f00e07dcfb57",
+  "archiveSha256": "d041f836d9b2a3c1c0fe3cce81ffe6a4a257028faa2f4af0dd20d7e58b493766",
+  "archiveBytes": 738793,
+  "archiveDigestAuthority": "Locally computed SHA256 of official immutable-commit codeload source archive; distinct from publisher digest of the separate release ZIP.",
+  "releaseZipPublisherSha256": "sha256:a2f4a8d51178f954e4c339007f77edd76ba0cb2e36f87a48e5a5403d9be5878f",
+  "sourceFiles": 142,
+  "integration": "Existing static traditional fmt::fmt engine target with PIC. Explicit FMT_MODULE OFF; subdirectory EXCLUDE_FROM_ALL keeps new unconsumed fmt-c target out of engine all builds.",
+  "licenseFile": "fmt/LICENSE",
+  "localPatches": [],
+  "notes": "Upstream 12.2.0 auto-enables optional C++ modules with modern CMake/Ninja/compiler combinations and adds an unconditional C API library. Recoil uses headers/compiled fmt::fmt; those new targets are not engine requirements."
+}

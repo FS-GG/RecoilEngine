@@ -1,7 +1,9 @@
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/rts)
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/rts/lib)
 
-ADD_SUBDIRECTORY(fmt)
+# Recoil consumes the traditional fmt::fmt target, not optional modules/C API.
+set(FMT_MODULE OFF)
+ADD_SUBDIRECTORY(fmt EXCLUDE_FROM_ALL)
 set_target_properties(fmt PROPERTIES POSITION_INDEPENDENT_CODE ON)
 ADD_SUBDIRECTORY(glad)
 ADD_SUBDIRECTORY(smmalloc)
