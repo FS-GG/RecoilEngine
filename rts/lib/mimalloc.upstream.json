@@ -1,0 +1,23 @@
+{
+  "name": "mimalloc",
+  "upstreamRepository": "https://github.com/microsoft/mimalloc",
+  "releaseTag": "v3.6.1",
+  "releaseId": 429503206,
+  "release": "https://github.com/microsoft/mimalloc/releases/tag/v3.6.1",
+  "commit": "56dc5eb80145f9a3ba7ca23d47c6a248b9d8586c",
+  "previousCommit": "7b7fca4b7013d77e356d96e055fec309cb3cbbd6",
+  "observedPreviousVersion": "3.2.8",
+  "observedCurrentVersion": "3.6.1",
+  "previousVersionMacro": 3208,
+  "currentVersionMacro": 30601,
+  "versionEncodingNote": "Upstream changed MI_MALLOC_VERSION encoding from major + minor + two-digit patch to major + two-digit minor + two-digit patch. Values are preserved as observed, not normalized.",
+  "gitlinkPath": "mimalloc",
+  "archiveUrl": "https://codeload.github.com/microsoft/mimalloc/tar.gz/56dc5eb80145f9a3ba7ca23d47c6a248b9d8586c",
+  "archiveSha256": "7321fbe8e3d2bb447cba127603c44450db0d8ef35e8240bb4a56a7455eba0a68",
+  "archiveBytes": 1579209,
+  "archiveDigestAuthority": "Locally computed SHA256 of official immutable-commit codeload source archive, not a publisher digest.",
+  "sourceFiles": 447,
+  "integration": "Existing MI_OVERRIDE OFF / MI_BUILD_SHARED OFF / MI_BUILD_STATIC ON provider with Recoil MemoryOverride.cpp custom allocation and C++ new/delete. Existing ASAN/Valgrind tracking options remain unchanged; those profiles need separate qualification.",
+  "licenseFile": "mimalloc/LICENSE",
+  "localPatches": []
+}
